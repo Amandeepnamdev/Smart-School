@@ -1,0 +1,164 @@
+{% extends 'schools/basic.html' %}
+{% block title %}
+Schools List
+{% endblock %}
+{% block head %}
+<meta name="description" content="">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Jekyll v4.0.1">
+
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+<!-- Bootstrap core CSS -->
+<link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- Favicons -->
+
+<meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#563d7c">
+{% endblock %}
+{% block style %} 
+
+<style>
+    body,html {
+        height: 100%;
+        margin: 0;
+    }
+    a.nav-link{
+      color:white;
+      margin-left: 6px;
+
+    }
+
+    a.nav-link:hover{
+      background-color: green;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    li.nav-item.active a{
+      background-color: rgb(53, 158, 53);
+      font-size: 17px;
+      border-radius: 5px;
+    }
+    #main_container {
+        background-color: rgb(253, 246, 245);
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      #navbarheader{
+        margin-top: 10px;
+      }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+<br><br>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">All Inforemation here by are provided by schools in their consent. 
+                We don't Add Anything Extra of Any School. Explore Here Any School That are registered here. Thanks.
+            </p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Instagram</a></li>
+              <!-- <li><a href="#" class="text-white">Subscribe Youtube Channel</a></li> -->
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <strong>Schools</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main role="main">
+  
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1>Our Vision</h1>
+        <p class="lead text-muted">Education is not meant by only one School. Let's Explore those schools in do you really want to study.
+            Explore your knowledge and thinking and learn that You want! It's really a great Job.
+        </p>
+      </div>
+    </section>
+  
+    <div class="album py-5 bg-light">
+      <div class="container">
+  
+        <div class="row">
+            <!-- A school element -->
+            {% for i in schools %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{i.school_image_link}}">
+              
+              <div class="card-body">
+                  <h5>{{i.school_name}}</h5>
+                <p class="card-text">{{i.school_vision}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                      <a class="card-body link" href="https://stark-shore-71550.herokuapp.com/schools/{{i.school_name}}/">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Go to School</button>
+                </a>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+            
+          
+        </div>
+      </div>
+    </div>
+  
+  </main>
+  
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#" style="font-weight: bold;">Back to top</a>
+      </p>
+      <p>All Inforemation here by are provided by schools in their consent. We don't Add Anything Extra of Any School. Explore Here Any School That are registered here. Thanks.</p>
+      <p>New to Here? <a href="#">Visit the Youtube Channel For full guided of how to get started.</a> or read our <a href="#">getting started guide</a>.</p>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script></body>
+{% endblock %}

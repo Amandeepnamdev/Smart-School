@@ -1,0 +1,118 @@
+
+{% extends 'schools/basic.html' %}
+
+{% block title  %}
+Schools 
+{% endblock %}
+
+{% block style %} 
+{% load static %}
+<style>
+  /* body{
+    background-color: black;
+  } */
+  /* body{
+    background-image: url( "{% static  "schools/background.gif" %}");
+} */
+body{
+  background-image: url('https://lh4.googleusercontent.com/Af7sVSTkwYoQdAOwQvsclWvFHQheXP7tfdIZvSyaFCkoTMa-vXYP8DJULuMA6iAtmVwOT10=w1280');
+}
+
+    a.nav-link{
+      color:white;
+      margin-left: 6px;
+
+    }
+
+    a.nav-link:hover{
+      background-color: green;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    li.nav-item.active a{
+      background-color: rgb(53, 158, 53);
+      font-size: 17px;
+      border-radius: 5px;
+    }
+    #mybtn {
+        font-size: 35px;
+        font-weight: bold;
+        padding-top: 50px;
+        padding-bottom: 50px; 
+        padding-left: 250px;
+        padding-right: 250px;
+        position: relative;
+        
+        margin-top:20px;
+        border-radius: 10px;
+        /* position: 50%;
+        float: center; */
+        
+    }
+    #mybtn1 {
+        background-color: rgb(253, 133, 111);
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        padding-top: 50px;
+        padding-bottom: 50px; 
+        padding-left: 250px;
+        padding-right: 250px;
+        position: relative;
+        
+        margin-top:20px;
+        border-radius: 10px;
+        /* position: 50%;
+        float: center; */
+        
+    }
+    #mybtn2 {
+        background-color: rgb(225, 111, 253);
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        padding-top: 50px;
+        padding-bottom: 50px; 
+        padding-left: 290px;
+        padding-right: 290px;
+        position: relative;
+        
+        margin-top:20px;
+        border-radius: 10px;
+        /* position: 50%;
+        float: center; */
+        
+    }
+    #mybtn:hover{
+        background: none;
+        color:blue;
+        font-size: 35px;
+        border:2px solid darkgreen;
+    }
+    #mybtn1:hover{
+        background: none;
+        color:blue;
+        font-size: 35px;
+        border:2px solid darkgreen;
+    }
+    #mybtn2:hover{
+        background: none;
+        color:blue;
+        font-size: 35px;
+        border:2px solid darkgreen;
+    }
+    #mid {
+        left: 30%;
+    }
+  </style>
+{% endblock %}
+{% block body %}
+<h4>j</h4>
+<div class="btn-group-vertical" id='mid'>
+<a href="https://stark-shore-71550.herokuapp.com/schools/students/"><button type='link'  id='mybtn' class="btn btn-success">Students</button></a>
+<a href="https://stark-shore-71550.herokuapp.com/schools/teachers/"><button type='link'  id='mybtn1' class="btn btn">Teachers</button></a>
+<a href="https://stark-shore-71550.herokuapp.com/schools/tc/"><button type='link'  id='mybtn2' class="btn btn">T.C.</button></a>
+</div>
+{% endblock %}

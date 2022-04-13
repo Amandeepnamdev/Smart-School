@@ -1,0 +1,125 @@
+{% extends 'schools/basic.html' %}
+{% block title %}
+Buy What You Need?
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<!-- <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Album example · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/"> -->
+
+    <!-- Bootstrap core CSS -->
+<link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% endblock %}
+
+{% block style %} 
+
+<style>
+    body,html {
+        height: 100%;
+        margin: 0;
+    }
+    a.nav-link{
+      color:white;
+      margin-left: 6px;
+
+    }
+
+    a.nav-link:hover{
+      background-color: green;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    li.nav-item.active a{
+      background-color: rgb(53, 158, 53);
+      font-size: 17px;
+      border-radius: 5px;
+    }
+    /* #main_container {
+        background-color: rgb(253, 246, 245);
+    } */
+    body,h1 {font-family: "Raleway", sans-serif}
+
+/* .bgimg {
+  background-image: url('https://chanderidusg.files.wordpress.com/2020/07/unnamed.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+} */
+ 
+
+</style>
+
+{% endblock %}
+{% block body %}
+<br><br>
+
+      
+<!-- <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    
+    <div class="w3-display-middle">
+      <h1 class="w3-jumbo w3-animate-top">COMING SOON</h1>
+      <hr class="w3-border-grey" style="margin:auto;width:40%">
+      <p class="w3-large w3-center">Only Some days left</p>
+    </div>
+    <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-in.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=IN&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=chanderiart-21&language=en_IN&marketplace=amazon&region=IN&placement=B01J3BIWHY&asins=B01J3BIWHY&linkId=bde034d622a1d84ca9ca595b9750bbd5&show_border=true&link_opens_in_new_window=true"></iframe>
+    <div class="w3-display-bottomleft w3-padding-large">
+      Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+    </div>
+  </div> -->
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+      <!-- <div class="col-md-3 col-xl-2  col-sm-3 bd-sidebar"></div>
+        <div class="col-md-3 col-xl-2  col-sm-3 bd-sidebar">
+    
+            <nav class="bd-links collapse show" id="bd-docs-nav" aria-label="Main navigation" style="float: left;">   
+             
+                
+
+                 <div class="bd-toc-item mx-5 my-3" style="background-color: rgba(211, 144, 57, 0.76);color: white; font-weight: bold; border-radius: 2px; padding-left: 5px;">
+                    <p style="font-size:2.5vh;   ">Let's make your work easy with some good things.</p>
+                 </div>  
+            </nav>
+ 
+              </div> -->
+    
+    
+              
+    <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main" id="main_container">
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+        
+              <div class="row">
+                {% for product in products %}
+                <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <a href="{{product.product_img_link}}" target="_blank"><img  src="{{product.product_img_a_src}}" ></a>
+                    <img src="{{product.product_img_src}}" width="1" height="1" alt="" style="border:none !important; margin:0px !important;" /> <div class="card-body">
+                           <h5>{{product.product_name|slice:"0:50"}}...</h5>
+                      <h8 class="card-text">{{product.product_detail|slice:"0:75"}}...</h8>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a class="btn-grp-link" href="{{product.product_link}}" target="_blank">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">View and Buy</button>
+                        </a>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+    </main>
+    </div>
+    </div>
+{% endblock %}

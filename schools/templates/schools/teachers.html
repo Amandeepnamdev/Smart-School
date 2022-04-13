@@ -1,0 +1,70 @@
+{% extends 'schools/basic.html' %}
+{% block style %}
+<style>
+       
+   
+  a.nav-link{
+    color:white;
+    margin-left: 6px;
+
+  }
+  a.nav-link:hover{
+    background-color: green;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  li.nav-item.active a{
+    background-color: rgb(53, 158, 53);
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  
+</style> 
+{% endblock %}
+{% block body %}
+<div>
+    <div class=" row sticky-top " style="background-color: rgb(242, 247, 174);padding-top: 4px;position: fixed;top:100px;" >
+        
+        <!-- <h6 style="margin-left: 80px;margin-right: 80px; padding:2px;" >  Student Roll Number</h6> -->
+        <h6 style="margin-left: 110px; margin-right: 80px;padding:2px;">  Teacher Name</h6>
+        <h6 style="margin-left: 110px; margin-right: 80px;padding:2px;">  Mobile number</h6>
+        <h6 style="margin-left: 110px; margin-right: 80px;padding:2px;">  Class</h6>
+        </div>
+     
+{% for teacher in allTeachers %}
+
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="id{{forloop.counter}}">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-center {{forloop.counter}}" type="button" data-toggle="collapse" id="{{forloop.counter}}" data-target="#collapseOne{{forloop.counter}}" aria-expanded="true" aria-controls="collapseOne{{forloop.counter}}" style="border: 2px solid green;background-color: rgb(221, 241, 241);font-size: 20px;font-weight: bold;">
+            Class: {{teacher.0.teacher_class}}th
+            <svg class="bi bi-chevron-expand" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+            </svg>
+          </button>
+        </h2>
+      </div>
+  
+      <div id="collapseOne{{forloop.counter}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          {% for i in teacher %}
+          <div class="row" style="background-color: rgb(218, 227, 245);padding-top: 4px;" >
+          <h6 style="margin-left: 110px; margin-right: 100px;padding:2px;">  {{i.teacher_name}}</h6>
+          <h6 style="margin-left: 110px; margin-right: 100px;padding:2px;">  {{i.teacher_number}}</h6>
+          <h6 style="margin-left: 110px; margin-right: 100px;padding:2px;">  {{i.teacher_class}}</h6>
+          <h5 style="margin-left: 210px;padding: 4px;background-color: rgb(226, 137, 253);border-radius: 6px;"> <a href="https://stark-shore-71550.herokuap.com/schools/teachers/{{i.teacher_number}}">Click for more details</a></h5>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

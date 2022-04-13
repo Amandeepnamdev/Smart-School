@@ -1,0 +1,530 @@
+
+{% extends 'schools/basic.html' %}
+{% if perms.schools %}
+
+{% block head %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block title %}
+{{class1}}th Class
+{% endblock %}   
+{% block style %} 
+<style>
+       
+   
+  a.nav-link{
+    color:white;
+    margin-left: 6px;
+
+  }
+  a.nav-link:hover{
+    background-color: green;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  li.nav-item.active a{
+    background-color: rgb(53, 158, 53);
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  img {
+      width: 100%;
+      height:450px;
+      border-radius: 2%;
+        } 
+  #main_container {
+        background-color: rgb(253, 246, 245);
+    }
+  
+</style>
+{% endblock %}
+
+{% block heading %}<br>
+{{school_name}}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+<div class="row flex-xl-nowrap">
+  <!-- Left sidebar -->
+    <div class="col-md-3 col-xl-2  col-sm-3 bd-sidebar">
+
+        <nav class="bd-links collapse show" id="bd-docs-nav" aria-label="Main navigation" style="float: left;">  
+               <!--  Admission -->
+          
+          <div class="bd-toc-item mx-5 my-3">
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" style="padding: 12px 19px;font-weight: bold;font-size: 17px;" data-target="#AdmissionModal" data-whatever="Admission">Admission</button>
+            
+            <div class="modal fade" id="AdmissionModal" tabindex="-1" role="dialog" aria-labelledby="AdmissionModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="AdmissionModalLabel">Give Admission Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="post"  class='AdmissionForm' name="Admission" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <div class="form-group col-md-12">
+                          <label for="Admissionlink">Admission Link</label>
+                          <input type="text" class="form-control" id="Admissionlink" name="Admissionlink" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                          <label for="Admissionsubject">Admission Subject</label>
+                          <input type="text" class="form-control" id="Admissionsubject" name="Admissionsubject" required>
+                        </div>                                    
+                      </div>
+                      <div class="Admissionform-group">
+                        <div class="Admissionform-check">
+                          <input class="Admissionform-check-input" type="checkbox" id="AdmissiongridCheck" name="AdmissiongridCheck" required>
+                          <label class="Admissionform-check-label" for="AdmissiongridCheck">
+                            Give Admission
+                          </label>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-success" name="Admission">Submit</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>   
+          </div>
+             <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-primary" data-toggle="modal" style="padding: 12px 37px;font-weight: bold;font-size: 17px;" data-target="#NotesModal" data-whatever="Notes">Notes</button>
+              
+              <div class="modal fade" id="NotesModal" tabindex="-1" role="dialog" aria-labelledby="NotesModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="NotesModalLabel">Give Notes</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='NotesForm' name="Notes" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="Noteslink">Notes Link</label>
+                            <input type="text" class="form-control" id="Noteslink" name="Noteslink" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Notessubject"> Subject </label>
+                            <!-- <input type="text" class="form-conNotestrol" id="Notesdetail" name="Notesdetail" required> -->
+                            <select id="Notessubject" name="Notessubject" class="form-control" required>
+                              {% for subject in subjects %}
+                              <option>{{subject}}</option>
+                              {% endfor %}
+                            </select>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Notestopic">Notes Topic</label>
+                            <input type="text" class="form-control" id="Notestopic" name="Notestopic" required>
+                          </div>
+                        
+                          
+                                           
+                        </div>
+                        <div class="Notesform-group">
+                          <div class="Notesform-check">
+                            <input class="Notesform-check-input" type="checkbox" id="NotesgridCheck" name="NotesgridCheck" required>
+                            <label class="Notesform-check-label" for="NotesgridCheck">
+                              Give Notes
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="Notes">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+             <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-info" data-toggle="modal" style="padding: 12px 17px;font-weight: bold;font-size: 17px;" data-target="#HomeworkModal" data-whatever="Homework">Homework</button>
+              
+              <div class="modal fade" id="HomeworkModal" tabindex="-1" role="dialog" aria-labelledby="HomeworkModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="HomeworkModalLabel">Give Homework</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='HomeworkForm' name="Homework" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="Homeworktopic">Homework Topic</label>
+                            <input type="text" class="form-control" id="Homeworktopic" name="Homeworktopic" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Homeworkdetail">Homework Detail</label>
+                            <input type="text" class="form-control" id="Homeworkdetail" name="Homeworkdetail" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Homeworkclass">Homework Class</label>
+                            <input type="text" class="form-control" id="Homeworkclass" name="Homeworkclass" required>
+                          </div>
+                          
+                                           
+                        </div>
+                        <div class="Homeworkform-group">
+                          <div class="Homeworkform-check">
+                            <input class="Homeworkform-check-input" type="checkbox" id="HomeworkgridCheck" name="HomeworkgridCheck" required>
+                            <label class="Homeworkform-check-label" for="HomeworkgridCheck">
+                              Give Homework
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="Homework">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+            <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-warning" data-toggle="modal" style="padding: 12px 14px;font-weight: bold;font-size: 17px;" data-target="#OnlineclassModal" data-whatever="Onlineclass">Online Class</button>
+              
+              <div class="modal fade" id="OnlineclassModal" tabindex="-1" role="dialog" aria-labelledby="OnlineclassModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="OnlineclassModalLabel">Online Class detail</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='OnlineclassForm' name="Onlineclass" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="Onlineclasstopic">Class Topic</label>
+                            <input type="text" class="form-control" id="Onlineclasstopic" name="Onlineclasstopic" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Onlineclassapp">Application Name</label>
+                            <input type="text" class="form-control" id="Onlineclassapp" name="Onlineclassapp" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Onlineclassid">Class Id</label>
+                            <input type="text" class="form-control" id="Onlineclassid" name="Onlineclassid" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Onlineclasspassword">Class Password</label>
+                            <input type="text" class="form-control" id="Onlineclasspassword" name="Onlineclasspassword" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Onlineclassdetail">Class Detail</label>
+                            <input type="text" class="form-control" id="Onlineclassdetail" name="Onlineclassdetail" required>
+                          </div>
+                         
+                          
+                                           
+                        </div>
+                        <div class="Onlineclassform-group">
+                          <div class="Onlineclassform-check">
+                            <input class="Onlineclassform-check-input" type="checkbox" id="OnlineclassgridCheck" name="OnlineclassgridCheck" required>
+                            <label class="Onlineclassform-check-label" for="OnlineclassgridCheck">
+                              Confirm details
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="Onlineclass">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+            <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-secondary" data-toggle="modal" style="padding: 12px 15px;font-weight: bold;" data-target="#exampleModal" data-whatever="@mdo">Youtube Video</button>
+              
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Video</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='YoutubeVideoForm' name="YoutubeVideos" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="videoembedlink">Video embed link</label>
+                            <input type="text" class="form-control" id="videoembedlink" name="videoembedlink" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="videosubject">Subject</label>
+                            <input type="text" class="form-control" id="videosubject" name="videosubject" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="videotopic">Video Topic</label>
+                            <input type="text" class="form-control" id="videotopic" name="videotopic" required>
+                          </div>
+                          
+                                           
+                        </div>
+                        <div class="YoutubeVideoform-group">
+                          <div class="YoutubeVideoform-check">
+                            <input class="YoutubeVideoform-check-input" type="checkbox" id="videogridCheck" name="videogridCheck" required>
+                            <label class="YoutubeVideoform-check-label" for="videogridCheck">
+                              Add video
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" name="YoutubeVideos">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+            <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-dark" data-toggle="modal" style="padding: 12px 18px;font-weight: bold;" data-target="#NotificationModal" data-whatever="@Notification">Notification</button>
+              
+              <div class="modal fade" id="NotificationModal" tabindex="-1" role="dialog" aria-labelledby="NotificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="NotificationModalLabel">Add Notification</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='NotificationForm' name="Notifications" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="Notification">Notification</label>
+                            <input type="text" class="form-control" id="Notification" name="Notification" placeholder="Notification " required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="Notificationlink">Notification Link</label>
+                            <input type="text" class="form-control" id="Notificationlink" name="Notificationlink" placeholder="Optional" >
+                          </div>                                                                                           
+                        </div>
+                        <div class="Notificationform-group">
+                          <div class="Notificationform-check">
+                            <input class="Notificationform-check-input" type="checkbox" id="NotificationgridCheck" name="NotificationgridCheck" required>
+                            <label class="Notificationform-check-label" for="NotificationgridCheck">
+                              Add Notification
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success 1" id="Notification" name="Notifications">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+            <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-danger" data-toggle="modal" style="padding: 12px 25px;font-weight: bold;" data-target="#AboutusModal" data-whatever="@Aboutus">About Us</button>
+              
+              <div class="modal fade" id="AboutusModal" tabindex="-1" role="dialog" aria-labelledby="AboutusModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="AboutusModalLabel">Add About Us</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='AboutUsSchoolForm' name="Aboutus" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="heading">Heading</label>
+                            <input type="text" class="form-control" id="heading" name="heading" placeholder="heading" required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Description For Aboutus" required>
+                          </div>                                                                                           
+                        </div>
+                        <div class="Aboutusform-group">
+                          <div class="Aboutusform-check">
+                            <input class="Aboutusform-check-input" type="checkbox" id="AboutusgridCheck" name="AboutusgridCheck" required>
+                            <label class="Aboutusform-check-label" for="AboutusgridCheck">
+                              Add This Field
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success 1" id="Aboutus" name="Aboutus">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+            <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-info" data-toggle="modal" style="padding: 12px 28px;font-weight: bold;" data-target="#FacilitiesModal" data-whatever="@Facilities">Facilities</button>
+              
+              <div class="modal fade" id="FacilitiesModal" tabindex="-1" role="dialog" aria-labelledby="FacilitiesModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="FacilitiesModalLabel">Add Facilities</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='FacilitiesForm' name="Facilities" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="heading">Heading</label>
+                            <input type="text" class="form-control" id="heading" name="heading" placeholder="Heading " required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Description" required >
+                          </div>                                                                                           
+                        </div>
+                        <div class="Facilitiesform-group">
+                          <div class="Facilitiesform-check">
+                            <input class="Facilitiesform-check-input" type="checkbox" id="FacilitiesgridCheck" name="FacilitiesgridCheck" required>
+                            <label class="Facilitiesform-check-label" for="FacilitiesgridCheck">
+                              Add Facility
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success 1" id="Facilities" name="Facilities">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+            <div class="bd-toc-item mx-5 my-3">
+              <button type="button" class="btn btn-outline-dark" data-toggle="modal" style="padding: 12px 9px;font-weight: bold;" data-target="#AchievementsModal" data-whatever="@Achievements">Achievements</button>
+              
+              <div class="modal fade" id="AchievementsModal" tabindex="-1" role="dialog" aria-labelledby="AchievementsModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="AchievementsModalLabel">Add Achievements</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post"  class='AchievementsForm' name="Achievements" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <div class="form-group col-md-12">
+                            <label for="heading">Heading</label>
+                            <input type="text" class="form-control" id="heading" name="heading" placeholder="Heading " required>
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Description" required >
+                          </div>                                                                                            
+                        </div>
+                        <div class="Achievementsform-group">
+                          <div class="Achievementsform-check">
+                            <input class="Achievementsform-check-input" type="checkbox" id="AchievementsgridCheck" name="AchievementsgridCheck" required>
+                            <label class="Achievementsform-check-label" for="AchievementsgridCheck">
+                              Add Achievement
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-success 1" id="Achievements" name="Achievements">Submit</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>   
+            </div>
+        </nav>
+          </div>
+          <!-- Center component -->
+<main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main" id="main_container">
+    
+  <div class="alert alert-info" role="alert" style="font-size: 18px; font-weight: bold;"> 
+    Class - {{class1}}th
+  </div>
+  <div class="table-responsive">
+<table class="table table-striped table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Roll No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Mobile No</th>
+      <th scope="col">Medium</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in students %}
+    <tr>
+      <th scope="row">{{i.stu_roll_no}}</th>
+      <td>{{i.stu_name}}</td>
+      <td>{{i.stu_mob_number}}</td>
+      <td>{{i.stu_medium}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table> 
+</div>
+</main>
+</div>
+</div>
+{% endblock %}
+
+{% endif %}

@@ -1,0 +1,246 @@
+{% extends 'schools/basic.html' %}
+{% block title %}
+Register
+{% endblock %}   
+{% block style %} 
+<style>
+       
+   
+  a.nav-link{
+    color:white;
+    margin-left: 6px;
+
+  }
+  a.nav-link:hover{
+    background-color: green;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  li.nav-item.active a{
+    background-color: rgb(53, 158, 53);
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  
+</style>
+{% endblock %}
+
+{% block body %}
+<div position="relative" style="margin: 20px 80px; padding:10px; background-color:rgb(245, 245, 245); border: 1px ridge;">
+<h1>Personal Details</h1>
+<form method="post"  class='NewStudentForm' enctype="multipart/form-data">
+  
+    {% csrf_token %}
+    <div class="form-group" > 
+        <label for="std_class"> Class</label>
+        <input type='radio' id="9th" name="std_class" value="9" required>
+        <label for="9th">  9th</label>
+        <input type='radio' id="10th" name="std_class" value="10"required>
+        <label for="10th">10th</label>
+        <input type='radio' id="11th" name="std_class" value="11" required>
+        <label for="11th">11th</label>
+        <input type='radio' id="12th" name="std_class" value="12" required>
+        <label for="12th">12th</label>
+    </div>
+
+    <div class="form-group">
+        <label for="std_gender"> Gender</label>
+        <input type='radio' id="male" name="std_gender" value="male" required>
+        <label for="male">Male</label>
+        <input type='radio' id="female" name="std_gender" value="female" required>   
+        <label for="female">Female</label>
+        
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="std_fname">First name</label>
+        <input type="text" class="form-control" id="std_fname" name="std_fname" placeholder="First name" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="std_lname">Last Name</label>
+        <input type="text" class="form-control" id="std_lname" name="std_lname" placeholder="Last Name" required>
+      </div>
+    </div> 
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="std_father_name">Father's name</label>
+          <input type="text" class="form-control" id="std_father_name" name="std_father_name" placeholder="Father's name" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="std_father_occupation">Father's occupation</label>
+          <input type="text" class="form-control" id="std_father_occupation" name="std_father_occupation" placeholder="Father's occupation"required>
+        </div>
+      </div> 
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="std_mother_name">Mother's name</label>
+          <input type="text" class="form-control" id="std_mother_name" name="std_mother_name" placeholder="Mother's name" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="std_mother_occupation">Mother's occupation</label>
+          <input type="text" class="form-control" id="std_mother_occupation" name="std_mother_occupation" placeholder="Mother's occupation" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="std_brother">Number of brothers</label>
+          <input type="number" class="form-control" id="std_brother" name="std_brother" placeholder="eg.01" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="std_sisters">Number of sisters</label>
+          <input type="number" class="form-control" id="std_sisters" name="std_sisters" placeholder="eg.01" required>
+        </div>
+      </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="std_mob_number">Mobile Number</label>
+          <input type="tel" class="form-control" id="std_mob_number" name="std_mob_number" placeholder="Mobile number" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="std_pho_number">Phone number</label>
+          <input type="tel" class="form-control" id="std_pho_number" name="std_pho_number" placeholder="Phone Number" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="std_date">Date of Birth</label>
+        <input type="date" class="form-control" id="std_date" name="std_date" placeholder="eg.01/01/2000" required>
+      </div>
+      <div class="form-group">
+        <label for="std_caste"> Caste</label>
+        <input type='radio' id="sc" name="std_caste" value="sc" required>
+        <label for="sc">  SC</label>
+        <input type='radio' id="st" name="std_caste" value="st" required>
+        <label for="st">ST</label>
+        <input type='radio' id="obc" name="std_caste" value="obc" required >
+        <label for="obc">OBC</label>
+        <input type='radio' id="gen" name="std_caste" value="gen" required >
+        <label for="gen">GEN</label>
+    </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="std_caste_certificate_number" name="std_caste_certificate_number">Caste Certificate Number</label>
+          <input type="text" class="form-control" id="std_caste_certificate_number" placeholder="Caste Certificate Number" >
+        </div>
+        <div class="form-group col-md-6">
+          <label for="std_samagra_id">Samagra Id</label>
+          <input type="text" class="form-control" id="std_samagra_id" name="std_samagra_id" placeholder="Samagra Id" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="std_bank_account_no">Bank Account Number</label>
+          <input type="text" class="form-control" id="std_bank_account_no" name="std_bank_account_no" placeholder="eg.489848645" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="std_ifsc">Bank IFSC</label>
+          <input type="text" class="form-control" id="std_ifsc" name="std_ifsc" placeholder="Bank Ifsc" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="std_bank_name">Bank Name</label>
+            <input type="text" class="form-control" id="std_bank_name" name="std_bank_name" placeholder="Bank Name" required>
+          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="std_annual_income">Family Annual Income</label>
+            <input type="text" class="form-control" id="std_annual_income" name="std_annual_income" placeholder="Income" required> 
+          </div>   
+      <div class="form-group col-md-6">
+        <label for="std_aadhar_number">Aadhar Number</label>
+        <input type="text" class="form-control" id="std_aadhar_number" name="std_aadhar_number" placeholder="111111111111" required>
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="std_ration_card">Ration Card</label>
+        <input type='radio' id="bpl" name="std_ration_card" value="bpl" required>
+        <label for="bpl"> BPL</label>
+        <input type='radio' id="apl" name="std_ration_card" value="apl" required>  
+        <label for="apl">APL</label>
+
+    </div>
+    <h1> Academic Details</h1>
+      <div class="form-group">
+        <label for="std_8_school">Name of 8th Passed School</label>
+        <input type="text" class="form-control" id="std_8_school" name="std_8_school"  placeholder="Name of 8th Passed School" required>
+      </div>
+      <div class="form-group">
+        <label for="std_medium"> Medium</label>
+        <input type='radio' id="hindi" name="std_medium" value="hindi" required>
+        <label for="english"> Hindi</label>
+        <input type='radio' id="english" name="std_medium" value="english" required>
+        <label for="english">English</label>
+        <input type='radio' id="other" name="std_medium" value="other" required>
+        <label for="other">Other</label>
+    </div>
+    <h1> </h1>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="std_8_per">8th percent</label>
+              <input type="text" class="form-control" id="std_8_per" name="std_8_per" placeholder="eg.80.05" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="std_9_per">9th percent</label>
+              <input type="text" class="form-control" id="std_9_per" name="std_9_per" placeholder="eg.80.05" >
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="std_10_per">10th percent</label>
+              <input type="text" class="form-control" id="std_10_per" name="std_10_per" placeholder="eg.80.05" >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="std_11_per">11th percent</label>
+              <input type="text" class="form-control" id="std_11_per" name="std_11_per" placeholder="eg.80.05" >
+            </div>
+          </div>
+   
+
+        
+
+          <h1>Address </h1>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="std_address">Address</label>
+      <input type="text" class="form-control" id="std_address" name="std_address" placeholder="1234 Main St" required>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="std_address2">Address 2</label>
+      <input type="text" class="form-control" id="std_address2" name="std_address2" placeholder="Apartment, studio, or floor" required>
+    </div>
+</div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="std_city">City</label>
+        <input type="text" class="form-control" id="std_city" name="std_city" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="std_state">State</label>
+        <input type="text" id="std_state"  name="std_state" class="form-control">
+        
+      </div>
+      <div class="form-group col-md-2">
+        <label for="std_zip">Zip</label>
+        <input type="text" class="form-control" id="std_zip" name="std_zip" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="std_photo">Student Photo</label>
+      <input type="file" name="std_photo" id="std_photo" enctype="multipart/form-data">
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+        <label class="form-check-label" for="gridCheck">
+          Confirm deatils
+        </label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success"  >Submit</button>
+  </form>
+</div>
+{% endblock %}

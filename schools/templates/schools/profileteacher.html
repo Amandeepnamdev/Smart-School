@@ -1,0 +1,138 @@
+{% extends 'schools/basic.html' %}
+{% block title %} {{teacher.teacher_name}}-Profile {% endblock %}
+{% block style %} 
+<style>
+       
+   
+  a.nav-link{
+    color:white;
+    margin-left: 6px;
+
+  }
+  a.nav-link:hover{
+    background-color: green;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  li.nav-item.active a{
+    background-color: rgb(53, 158, 53);
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  
+</style>
+{% endblock %}
+{% block body %}
+<div class="container" style="background-color: rgb(248, 247, 246);">
+<div  class="container my-4">
+<div class="row">
+    <div class="col-md-4" >
+        <img style="border-radius: 50%;" src="/media/{{teacher.teacher_photo}}">
+    </div>
+</div>
+<br>
+<form method="post"  class='NewStudentForm'>
+  
+    {% csrf_token %}
+    <div class="form-group" > 
+        <label for="std_class"> Class</label>
+        <input type='text' class="form-control" value="{{teacher.teacher_class}}" readonly>
+
+    </div>
+
+    <div class="form-group">
+        <label for="stu_gender"> Gender</label>
+        <input type='text' class="form-control" value="{{teacher.teacher_gender}}" readonly>
+
+        
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="std_fname">Teacher Name</label>
+        <input type="text" class="form-control" value="{{teacher.teacher_name}}" readonly>
+      </div> 
+    </div> 
+
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="teacher_number">Mobile Number</label>
+          <input type="tel" class="form-control" value="{{teacher.teacher_number}}" readonly>
+        </div>
+    
+      </div>
+      <div class="form-group">
+        <label for="std_date">Teacher Department</label>
+        <input type="date" class="form-control" value="{{teacher.teacher_dept}}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="std_caste"> Salary</label>
+        <input type="text" class="form-control" value="{{teacher.teacher_salary}}" readonly>
+ 
+    </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="std_caste_certificate_number" name="std_caste_certificate_number">Joining Date</label>
+          <input type="text" class="form-control" value="{{teacher.teacher_joining_date}}" readonly >
+        </div>
+        <div class="form-group col-md-6">
+          <label for="std_samagra_id">Leaving Date</label>
+          <input type="text" class="form-control" value="{{teacher.teacher_leaving_date}}" readonly>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="std_annual_income">Teacher Subject</label>
+            <input type="text" class="form-control"value="{{teacher.teacher_sub}}" readonly> 
+          </div>   
+      <div class="form-group col-md-6">
+        <label for="std_aadhar_number">Aadhar Number</label>
+        <input type="text" class="form-control" value="{{teacher.teacher_aadhar_number}}" readonly>
+      </div>
+      </div>
+  
+    <br><br><br>
+
+   
+
+        
+
+          <h1>Address </h1>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="std_address">Address</label>
+      <input type="text" class="form-control" value="{{teacher.teacher_address}}" readonly>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="std_address2">Address 2</label>
+      <input type="text" class="form-control" value="{{teacher.teacher_address2}}" readonly>
+    </div>
+</div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="std_city">City</label>
+        <input type="text" class="form-control" value="{{teacher.teacher_city}}" readonly>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="std_state">State</label>
+        <input type="text" class="form-control" value="{{teacher.teacher_state}}" readonly>
+        
+      </div>
+      <div class="form-group col-md-2">
+        <label for="std_zip">Zip</label>
+        <input type="text" class="form-control" value="{{teacher.teacher_zip}}" readonly>
+      </div>
+    </div>
+
+    <button type="print" class="btn btn-success" onclick="alert('You are printing this page'),window.print()" >Print Details</button>
+  </form>
+
+</div>
+</div>
+
+{% endblock %}

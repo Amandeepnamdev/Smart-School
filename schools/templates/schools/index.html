@@ -1,0 +1,163 @@
+{% extends 'schools/basic.html' %}
+{% block title  %}
+Schools 
+{% endblock %}
+{% block style %} 
+
+<style>
+    body,html {
+        height: 100%;
+        margin: 0;
+    }
+
+
+ .bg {
+    background-image: url('https://chanderidusg.files.wordpress.com/2020/07/456.jpg');
+    
+     max-height: 450px;
+    min-height: 400px; 
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top:30px;
+}
+
+    a.nav-link{
+      color:white;
+      margin-left: 6px;
+
+    }
+
+    a.nav-link:hover{
+      background-color: green;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    li.nav-item.active a{
+      background-color: rgb(53, 158, 53);
+      font-size: 17px;
+      border-radius: 5px;
+    }
+    #main_container {
+        background-color: rgb(253, 246, 245);
+    }
+    .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.text-block {
+    
+  position: relative;
+  bottom: 60px;
+  right: 20px;
+  background-color: rgba(207, 150, 17, 0.671);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.text-block id1{
+    
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(247, 129, 11, 0.418);
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .text-block id2{
+    
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(247, 129, 11, 0.418);
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="bg "> 
+</div>
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-md-3 col-xl-2  col-sm-3 bd-sidebar">
+    
+            <nav class="bd-links collapse show" id="bd-docs-nav" aria-label="Main navigation" style="float: left;">   
+                 
+                
+                 <div class="bd-toc-item mx-5 my-3">
+                    <a class="bd-toc-link" href="https://stark-shore-71550.herokuapp.com/schools/students/{{ user.student_set.get.stu_roll_no }}s">
+                  
+                     <button type="button" class="btn btn-outline-info" style="padding: 12px 24px;font-weight: bold;">Students</button></a>
+                 </div>
+                 <div class="bd-toc-item mx-2 my-3">
+                 <div class="card" style="width: 18rem;">
+                    <img src="https://chanderidusg.files.wordpress.com/2020/07/unnamed-1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body" style="background-color: rgb(248, 205, 124);">
+                      <h5 class="card-title">Go Online With Us</h5>
+                      <p class="card-text" style="margin-left: -5px; ">Bring your school online by<br>simple steps and let your <br>student study easily.</p>
+                      <a href="https://forms.gle/9bFerxMveWPAPK9U6" class="btn btn-outline-success" target="_blank" style="font-weight: bold; ">Go Here</a>
+                    </div>
+                  </div>
+                </div>
+                
+    
+            </nav>
+           
+              </div>
+    
+    
+              <!-- Center component -->
+    <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main" id="main_container">
+
+       
+        <div class="container id1">
+            <a href="https://stark-shore-71550.herokuapp.com/schools/schools_list/">
+            <img src="https://chanderidusg.files.wordpress.com/2020/07/andy-falconer-qadcg-2qmd4-unsplash.jpg?w=1024" alt="Snow" style="width:100%;">
+
+            <div class="text-block">
+                <h4>Go to Schools </h4>
+                <h2>We want</h2>
+                <h3>You Never Stop Learning.</h3>
+              </div>
+            </a>
+          </div>
+          <div class="container">
+            <a href="https://stark-shore-71550.herokuapp.com/schools/buy/">
+            <img src="https://chanderidusg.files.wordpress.com/2020/07/unnamed-2.jpg" alt="Snow" style="width:100%;">
+
+            <div class="text-block id1">
+                <h4>Buy  </h4>
+                <h3>What You Need</h3>
+              </div>
+            </a>
+          </div>
+          <div class="container">
+              <a href="https://forms.gle/9bFerxMveWPAPK9U6" target="_blank">
+            <img src="https://chanderidusg.files.wordpress.com/2020/07/unnamed-3.jpg?w=1024" alt="Snow" style="width:100%;">
+        
+            <div class="text-block id1">
+            
+                <h3>Bring Your School Online With Us </h3>
+                <h5 style="font-weight: bold; ">Click Here</h5>
+              </div>
+            </a>
+          </div>
+      
+    </main>
+
+    </div>
+    </div>
+
+
+{% endblock %}

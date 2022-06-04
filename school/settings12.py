@@ -36,7 +36,7 @@ ENV_ROLE = get_env_variable('env_role')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = get_env_variable('SECRET_KEY')
-SECRET_KEY = 'c-u32_lljwg99ap!s4b*n=p#o^w(uxr_6@o#uy&0!51!n^esh5'
+SECRET_KEY = 'dkufuliuliugiufiurlilfo#uy&0!51!n^esh5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
